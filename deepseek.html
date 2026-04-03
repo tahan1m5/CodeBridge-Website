@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CodeBridge Consultancy | Digital Innovation in Seychelles</title>
+  <!-- Google Fonts + Font Awesome + Typed.js -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0c12;
+      color: #eef2ff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* ========== SPLASH SCREEN (cool tech vibes) ========== */
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 10%, #0b1120, #03050b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.9s;
+      backdrop-filter: blur(2px);
+    }
+
+    .splash-content {
+      text-align: center;
+      animation: fadeGlow 1.8s ease-out;
+    }
+
+    .splash-logo {
+      font-size: 4.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .splash-logo span {
+      font-weight: 300;
+      font-size: 2rem;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      margin: 1.8rem auto 0;
+      border: 3px solid rgba(59,130,246,0.2);
+      border-top: 3px solid #3b82f6;
+      border-right: 3px solid #a855f7;
+      border-radius: 50%;
+      animation: spin 0.9s infinite linear;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeGlow {
+      0% { opacity: 0; transform: scale(0.96); filter: blur(6px);}
+      100% { opacity: 1; transform: scale(1); filter: blur(0);}
+    }
+
+    /* main content hidden until splash fades */
+    .main-content {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    /* container & utilities */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* header / navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(59,130,246,0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(130deg, #3b82f6, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .logo i {
+      background: none;
+      color: #3b82f6;
+      margin-right: 6px;
+    }
+
+    .nav-links a {
+      color: #cbd5e6;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #a855f7;
+    }
+
+    /* buttons & cards */
+    .btn-primary {
+      background: linear-gradient(95deg, #2563eb, #7c3aed);
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(124,58,237,0.5);
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      border: 1.5px solid #a855f7;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #e2e8ff;
+      transition: 0.2s;
+    }
+
+    .btn-outline-light:hover {
+      background: #a855f720;
+      border-color: #c084fc;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(to right, #f0f9ff, #e0c3ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .typed-container {
+      min-height: 70px;
+      margin-top: 0.5rem;
+    }
+    #typed-words {
+      font-size: 1.7rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #c084fc, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-text p {
+      margin: 1.5rem 0;
+      color: #9ca3bf;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      background: #1e293b;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #c084fc;
+      margin-bottom: 1rem;
+    }
+
+    /* service cards */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(168,85,247,0.3);
+      transition: all 0.25s ease;
+    }
+
+    .service-card:hover {
+      border-color: #a855f7;
+      transform: translateY(-8px);
+      background: #0f172ad9;
+    }
+
+    .price-tag {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #facc15;
+      margin: 0.75rem 0;
+    }
+
+    .price-small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #cbd5e1;
+    }
+
+    .maintenance {
+      background: #1e293b;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* ========== NEW PROJECTS SECTION (purple subtle vibes) ========== */
+    .projects-section {
+      background: linear-gradient(145deg, #0c0f1a, #080b14);
+      border-radius: 3rem;
+      margin: 2rem 0 1rem;
+      padding: 2rem 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-title span {
+      background: linear-gradient(130deg, #c084fc, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: rgba(20, 24, 40, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      box-shadow: 0 12px 25px -12px rgba(0,0,0,0.5);
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #c084fc;
+      box-shadow: 0 20px 35px -12px rgba(168,85,247,0.3);
+    }
+    .project-img {
+      height: 200px;
+      background: linear-gradient(135deg, #2a1e44, #181c2c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #c084fc;
+    }
+    .project-content {
+      padding: 1.5rem;
+    }
+    .project-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #e2d5ff;
+    }
+    .project-tag {
+      display: inline-block;
+      background: #2d234a;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #cfaaff;
+      margin-bottom: 1rem;
+    }
+    .project-content p {
+      color: #b9c3db;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .project-link {
+      color: #c084fc;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+    .project-link:hover {
+      color: #e9c8ff;
+      gap: 10px;
+    }
+
+    /* contact form */
+    .contact-form-card {
+      background: #0f172ab3;
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid #2d3a5e;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: #111827;
+      border: 1px solid #2d3a5e;
+      border-radius: 1rem;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #a855f7;
+      box-shadow: 0 0 0 3px #a855f720;
+    }
+
+    .row-2cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      font-size: 1.8rem;
+      transition: 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #a855f7;
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid #1e293b;
+      color: #5b6e8c;
+    }
+
+    @media (max-width: 760px) {
+      .hero-text h1 { font-size: 2.4rem; }
+      .navbar { flex-direction: column; }
+      .nav-links a { margin: 0 1rem; }
+      .row-2cols { grid-template-columns: 1fr; }
+      .container { padding: 0 1.2rem; }
+      .typed-container #typed-words { font-size: 1.3rem; }
+      .projects-grid { gap: 1.5rem; }
+    }
+
+    .coming-soon {
+      background: #111827;
+      border-radius: 2rem;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+      border: 1px dashed #a855f7;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN with tech animation -->
+<div class="splash-screen" id="splashScreen">
+  <div class="splash-content">
+    <div class="splash-logo">
+      &lt;CB/&gt; <span></span>
+    </div>
+    <div class="loader"></div>
+     </div>
+</div>
+
+<div class="main-content" id="mainContent">
+  <div class="container">
+    <!-- Navigation -->
+    <div class="navbar">
+      <div class="logo">
+        <i class="fas fa-code-branch"></i> CodeBridge Consultancy
+      </div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- Hero section with Typed.js -->
+    <section>
+      <div class="hero">
+        <div class="hero-text">
+          <div class="badge"><i class="fas fa-map-marker-alt"></i> Based in Seychelles · Global Reach</div>
+          <h1>Need an affordable digital presence?</h1>
+          <div class="typed-container">
+          
+            <span id="typed-words"></span>
+          </div>
+          <p>We craft high-performance websites, mobile apps, and digital ecosystems. From startups to enterprises. Modern, scalable, and future-proof.</p>
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-paper-plane"></i> Start your project</button>
+
+        </div>
+        <div style="flex:1; text-align:center;">
+          <i class="fas fa-laptop-code" style="font-size: 12rem; color: #2a1e44; opacity: 0.7;"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <h2 style="font-size: 2rem; margin-bottom: 1rem;">Core <span style="color:#a855f7;">expertise</span></h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <i class="fas fa-globe" style="font-size: 2.5rem; color:#a855f7;"></i>
+          <h3 style="margin: 1rem 0 0.5rem;">Website Development</h3>
+          <p>Responsive, SEO-optimized, blazing fast websites. Custom CMS, e‑commerce, or corporate portals.</p>
+          <div class="price-tag">from 4K € <span class="price-small">*USD/EUR</span></div>
+          <div class="maintenance"><i class="fas fa-clock"></i> Maintenance plans from 900/- per month</div>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color:#c084fc;"></i>
+          <h3 style="margin: 1rem 0 0.5rem;">Mobile App Development</h3>
+          <p>iOS & Android, Flutter/React Native, native experiences — fintech, lifestyle, logistics.</p>
+          <div class="price-tag">tailored quote</div>
+          <div class="maintenance"><i class="fas fa-sync-alt"></i> Ongoing support & updates</div>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-chart-line" style="font-size: 2.5rem; color:#e879f9;"></i>
+          <h3 style="margin: 1rem 0 0.5rem;">SEO & Growth</h3>
+          <p>Data-driven visibility, local SEO for Seychelles market + international ranking.</p>
+          <div class="price-tag">performance based</div>
+        </div>
+      </div>
+      <div class="coming-soon">
+        <i class="fas fa-rocket"></i> More services: AI integration, cloud solutions, DevOps — <strong>available soon</strong>
+      </div>
+    </section>
+
+    <!-- ========== NEW PROJECTS SECTION (Purple subtle, three projects) ========== -->
+    <section id="projects" class="projects-section">
+      <div class="section-title">
+        <span>✦ featured projects ✦</span><br>
+        <span style="font-size: 1rem; color:#9aa6c9;">Innovation delivered across the islands</span>
+      </div>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-tag">tourism + hospitality</div>
+            <h3>Seychelles Escape</h3>
+            <p>All-in-one digital ecosystem for luxury resorts: real-time booking engine, virtual island tours, and multilingual CRM integration — increased direct bookings by 156%.</p>
+            <a href="#" class="project-link">Case study <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-fish"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-tag">logistics & marine</div>
+            <h3>BlueCargo IQ</h3>
+            <p>Cross-platform mobile app for fleet management & cargo tracking across Indian Ocean routes. Real-time analytics, offline-first, and IoT sensor integration.</p>
+            <a href="#" class="project-link">Discover app <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-tag">fintech / blockchain</div>
+            <h3>CoconutPay</h3>
+            <p>Secure digital wallet & payment gateway tailored for Seychelles merchants. Seamless crypto/fiat conversion, AI fraud detection, and regulatory compliant.</p>
+            <a href="#" class="project-link">View platform <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <i class="fas fa-palette" style="color:#a855f7; opacity: 0.7;"></i> <span style="color:#b9c3db;">Each project built with scalability & island-first mindset</span>
+      </div>
+    </section>
+
+    <!-- Contact Form + Host, Domain, Services, SEO selection -->
+    <section id="contact">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Let's <span style="color:#a855f7;">bridge</span> your vision</h2>
+      <div class="contact-form-card">
+        <form id="consultForm" action="#" method="post">
+          <div class="row-2cols">
+            <div class="form-group">
+              <label>Full name *</label>
+              <input type="text" id="name" required placeholder="Alexandre Benoit">
+            </div>
+            <div class="form-group">
+              <label>Email address *</label>
+              <input type="email" id="email" required placeholder="hello@codebridge.sc">
+            </div>
+          </div>
+          <div class="row-2cols">
+            <div class="form-group">
+              <label>Phone (optional)</label>
+              <input type="tel" id="phone" placeholder="+248 2xxx xxx">
+            </div>
+            <div class="form-group">
+              <label>Preferred service</label>
+              <select id="mainService">
+                <option value="website">Website Development (from 4K)</option>
+                <option value="mobile-app">Mobile App Development</option>
+                <option value="both">Full Website + App</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Host, Domain, Services, SEO checkboxes -->
+          <div style="margin: 1rem 0 0.5rem; font-weight: 600;">Additional services you need:</div>
+          <div class="checkbox-group">
+            <label><input type="checkbox" class="extraCheck" value="Hosting"> Hosting</label>
+            <label><input type="checkbox" class="extraCheck" value="Domain"> Domain registration</label>
+            <label><input type="checkbox" class="extraCheck" value="SEO"> SEO Optimization</label>
+            <label><input type="checkbox" class="extraCheck" value="Maintenance"> Maintenance (900/- mo)</label>
+          </div>
+          <div class="form-group">
+            <label>Project details / message</label>
+            <textarea rows="3" id="message" placeholder="Tell us about your idea, timeline or any specific request..."></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <button type="submit" class="btn-primary" style="width: auto;"><i class="fas fa-paper-plane"></i> Send inquiry</button>
+            <small style="color:#6c86a3;">We’ll respond within 24h — info@codebridge.sc</small>
+          </div>
+          <div id="formFeedback" style="margin-top: 1.2rem; font-size: 0.9rem;"></div>
+        </form>
+      </div>
+
+      <!-- social media links -->
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:info@codebridgeconsultancy.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 CodeBridge Consultancy — based in Victoria, Mahé, Seychelles. Bridging digital frontiers.</p>
+      <p style="margin-top: 0.5rem;"><i class="fas fa-code"></i> innovation · resilience · island code mindset</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // SPLASH SCREEN transition
+  const splash = document.getElementById('splashScreen');
+  const main = document.getElementById('mainContent');
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      splash.style.opacity = '0';
+      splash.style.visibility = 'hidden';
+      main.style.opacity = '1';
+    }, 1900);
+  });
+
+  // TYPED.JS INIT for hero section (cool tech phrases)
+  const typed = new Typed('#typed-words', {
+    strings: [
+      'Websites for business',
+      'Mobile apps for startups',
+      'E-commerce ecosystems',
+      'SEO that ranks',
+      'Hosting & domains',
+    ],
+    typeSpeed: 60,
+    backSpeed: 35,
+    backDelay: 1800,
+    startDelay: 400,
+    loop: true,
+    showCursor: true,
+    cursorChar: '|',
+    smartBackspace: true,
+  });
+
+  // handle contact form submission (frontend simulation)
+  const form = document.getElementById('consultForm');
+  const feedbackDiv = document.getElementById('formFeedback');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!name || !email) {
+      feedbackDiv.innerHTML = '<span style="color:#f97316;"><i class="fas fa-exclamation-triangle"></i> Please provide name and email.</span>';
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      feedbackDiv.innerHTML = '<span style="color:#f97316;"><i class="fas fa-envelope"></i> Enter a valid email address.</span>';
+      return;
+    }
+
+    const checkboxes = document.querySelectorAll('.extraCheck:checked');
+    const selectedExtras = Array.from(checkboxes).map(cb => cb.value);
+    const mainServiceSelect = document.getElementById('mainService').value;
+    const messageText = document.getElementById('message').value;
+    
+    console.log('Form data:', { name, email, mainServiceSelect, selectedExtras, messageText });
+    
+    let serviceLabel = '';
+    if (mainServiceSelect === 'website') serviceLabel = 'Website Development';
+    else if (mainServiceSelect === 'mobile-app') serviceLabel = 'Mobile App Development';
+    else serviceLabel = 'Full Website + App';
+    
+    feedbackDiv.innerHTML = `<span style="color:#c084fc;"><i class="fas fa-check-circle"></i> Thank you ${name}! Our Seychelles team will reach out within 24h regarding ${serviceLabel} ${selectedExtras.length ? ' + ' + selectedExtras.join(', ') : ''}.</span>`;
+    form.reset();
+    setTimeout(() => {
+      feedbackDiv.innerHTML = '';
+    }, 6000);
+  });
+
+  // Smooth anchor links
+  document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
