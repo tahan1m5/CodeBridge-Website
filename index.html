@@ -222,7 +222,7 @@
       margin-bottom: 1rem;
     }
 
-    /* service cards */
+    /* service cards - NO PRICING, just description + quote CTA */
     .service-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -237,6 +237,8 @@
       padding: 2rem;
       border: 1px solid rgba(168,85,247,0.3);
       transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card:hover {
@@ -245,29 +247,26 @@
       background: #0f172ad9;
     }
 
-    .price-tag {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #faf7fa;
-      margin: 0.75rem 0;
+    .service-card .btn-sm {
+      background: transparent;
+      border: 1px solid #a855f7;
+      color: #c084fc;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      margin-top: 1.2rem;
+      align-self: flex-start;
+      transition: 0.2s;
+      cursor: pointer;
     }
 
-    .price-small {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #cbd5e1;
+    .service-card .btn-sm:hover {
+      background: #a855f720;
+      color: white;
+      border-color: #c084fc;
     }
 
-    .maintenance {
-      background: #1e293b;
-      border-radius: 2rem;
-      padding: 0.5rem 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    /* ========== NEW PROJECTS SECTION (purple subtle vibes) ========== */
+    /* projects section */
     .projects-section {
       background: linear-gradient(145deg, #0c0f1a, #080b14);
       border-radius: 3rem;
@@ -389,20 +388,6 @@
       gap: 1rem;
     }
 
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    .checkbox-group label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-    }
-
     .social-links {
       display: flex;
       gap: 1.8rem;
@@ -428,6 +413,30 @@
       color: #5b6e8c;
     }
 
+    /* quote banner (replaces pricing section) */
+    .quote-banner {
+      background: linear-gradient(115deg, #0f1222, #090c18);
+      border-radius: 2.5rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 2rem 0;
+      border: 1px solid rgba(168,85,247,0.4);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+    .quote-banner h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .quote-banner p {
+      color: #b9c3db;
+      max-width: 600px;
+      margin: 0 auto 1.8rem;
+    }
+    .btn-large {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+    }
+
     @media (max-width: 760px) {
       .hero-text h1 { font-size: 2.4rem; }
       .navbar { flex-direction: column; }
@@ -436,8 +445,8 @@
       .container { padding: 0 1.2rem; }
       .typed-container #typed-words { font-size: 1.3rem; }
       .projects-grid { gap: 1.5rem; }
-      /*splashscreen logo smaller on mobile*/
       .splash-logo { font-size: 3rem; }
+      .quote-banner h2 { font-size: 1.6rem; }
     }
 
     .coming-soon {
@@ -459,7 +468,7 @@
       &lt;CodeBridge/&gt; <span></span>
     </div>
     <div class="loader"></div>
-     </div>
+  </div>
 </div>
 
 <div class="main-content" id="mainContent">
@@ -472,7 +481,6 @@
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -482,14 +490,12 @@
       <div class="hero">
         <div class="hero-text">
           <div class="badge"><i class="fas fa-map-marker-alt"></i> Based in Seychelles · Global Reach</div>
-          <h1>Need an affordable digital presence?</h1>
+          <h1>Build your digital future with confidence</h1>
           <div class="typed-container">
-          
             <span id="typed-words"></span>
           </div>
-          <p>We craft high-performance websites, mobile apps, and digital ecosystems. From startups to enterprises. Modern, scalable, and future-proof.</p>
+          <p>We craft high-performance websites, mobile apps, and digital ecosystems. From startups to enterprises. Modern, scalable, and future-proof — tailored to your vision.</p>
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-paper-plane"></i> Get a Quote</button>
-
         </div>
         <div style="flex:1; text-align:center;">
           <i class="fas fa-laptop-code" style="font-size: 12rem; color: #2a1e44; opacity: 0.7;"></i>
@@ -497,35 +503,33 @@
       </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (Core expertise, NO pricing, each card leads to quote) -->
     <section id="services">
       <h2 style="font-size: 2rem; margin-bottom: 1rem;">Core <span style="color:#a855f7;">Expertise ⭑.ᐟ</span></h2>
       <div class="service-grid">
         <div class="service-card">
           <i class="fas fa-globe" style="font-size: 2.5rem; color:#a855f7;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Website Development</h3>
-          <p>Responsive, SEO-optimized, hard coded websites.</p>
-          <div class="price-tag">from 4,000 <span class="price-small">*SCR</span></div>
-          <div class="maintenance"><i class="fas fa-clock"></i> Maintenance plans from 900/- per month</div>
+          <p>Fully responsive, SEO-optimized websites, custom CMS, blazing performance, and modern UI/UX. Perfect for businesses, e-commerce, and portfolios.</p>
+          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Request quote →</button>
         </div>
         <div class="service-card">
           <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color:#c084fc;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Mobile App Development</h3>
-          <p>iOS & Android, React Native, native experiences — fintech, lifestyle, logistics.</p>
-          <div class="price-tag">tailored quote</div>
-          <div class="maintenance"><i class="fas fa-sync-alt"></i> Ongoing support & updates</div>
+          <p>iOS & Android, React Native, native experiences — fintech, lifestyle, logistics, real-time sync. Cross-platform efficiency without compromise.</p>
+          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Get quote →</button>
         </div>
         <div class="service-card">
           <i class="fas fa-chart-line" style="font-size: 2.5rem; color:#e879f9;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">SEO & Growth</h3>
-          <p>Data-driven visibility, local SEO for Seychelles market + international ranking.</p>
-          <div class="price-tag">performance based</div>
+          <p>Data-driven visibility, local SEO for Seychelles market + international ranking. Content strategy, technical audits, and performance tracking.</p>
+          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Request quote →</button>
         </div>
       </div>
-    
     </section>
 
-    <!-- ========== NEW PROJECTS SECTION (Purple subtle, three projects) ========== -->
+   
+    <!-- ========== PROJECTS SECTION (Purple subtle, three projects) ========== -->
     <section id="projects" class="projects-section">
       <div class="section-title">
         <span>Featured Projects ✦</span><br>
@@ -574,7 +578,7 @@
       </div>
     </section>
 
-    <!-- Contact Form + Host, Domain, Services, SEO selection -->
+    <!-- Contact Form -->
     <section id="contact">
       <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Let's <span style="color:#a855f7;">bridge</span> your vision</h2>
       <div class="contact-form-card">
@@ -595,23 +599,23 @@
               <input type="tel" id="phone" placeholder="+248 2xxx xxx">
             </div>
             <div class="form-group">
-              <label>Preferred service</label>
+              <label>I'm interested in</label>
               <select id="mainService">
-                <option value="website">Website Development (from 4K)</option>
+                <option value="website">Website Development</option>
                 <option value="mobile-app">Mobile App Development</option>
-                <option value="both">Full Website + App</option>
+                <option value="both">Full Website + App Bundle</option>
+                <option value="seo">SEO & Growth Package</option>
+                <option value="maintenance">Maintenance & Support</option>
               </select>
             </div>
           </div>
-          
-         
           <div class="form-group">
             <label>Project details / message</label>
-            <textarea rows="3" id="message" placeholder="Tell us about your idea, timeline or any specific request..."></textarea>
+            <textarea rows="3" id="message" placeholder="Tell us about your idea, timeline, budget range or any specific request..."></textarea>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <button type="submit" class="btn-primary" style="width: auto;"><i class="fas fa-paper-plane"></i> Send inquiry</button>
-            <small style="color:#6c86a3;">We’ll respond within 24h — email</small>
+            <button type="submit" class="btn-primary" style="width: auto;"><i class="fas fa-paper-plane"></i> Send inquiry → get quote</button>
+            <small style="color:#6c86a3;">We’ll respond within 24h — no obligation</small>
           </div>
           <div id="formFeedback" style="margin-top: 1.2rem; font-size: 0.9rem;"></div>
         </form>
@@ -646,14 +650,14 @@
     }, 1900);
   });
 
-  // TYPED.JS INIT for hero section (cool tech phrases)
+  // TYPED.JS INIT for hero section (dynamic words)
   const typed = new Typed('#typed-words', {
     strings: [
       'Websites for business',
       'Mobile apps for startups',
       'E-commerce ecosystems',
       'SEO that ranks',
-      'Hosting & domains',
+      'Custom digital tools',
     ],
     typeSpeed: 60,
     backSpeed: 35,
@@ -683,19 +687,10 @@
       return;
     }
 
-    const checkboxes = document.querySelectorAll('.extraCheck:checked');
-    const selectedExtras = Array.from(checkboxes).map(cb => cb.value);
-    const mainServiceSelect = document.getElementById('mainService').value;
-    const messageText = document.getElementById('message').value;
+    const mainServiceSelect = document.getElementById('mainService');
+    const serviceLabel = mainServiceSelect.options[mainServiceSelect.selectedIndex]?.text || 'our services';
     
-    console.log('Form data:', { name, email, mainServiceSelect, selectedExtras, messageText });
-    
-    let serviceLabel = '';
-    if (mainServiceSelect === 'website') serviceLabel = 'Website Development';
-    else if (mainServiceSelect === 'mobile-app') serviceLabel = 'Mobile App Development';
-    else serviceLabel = 'Full Website + App';
-    
-    feedbackDiv.innerHTML = `<span style="color:#c084fc;"><i class="fas fa-check-circle"></i> Thank you ${name}! Our Seychelles team will reach out within 24h regarding ${serviceLabel} ${selectedExtras.length ? ' + ' + selectedExtras.join(', ') : ''}.</span>`;
+    feedbackDiv.innerHTML = `<span style="color:#c084fc;"><i class="fas fa-check-circle"></i> Thank you ${name}! Our Seychelles team will reach out within 24h regarding ${serviceLabel} — we'll share a detailed quote.</span>`;
     form.reset();
     setTimeout(() => {
       feedbackDiv.innerHTML = '';
