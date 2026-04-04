@@ -112,7 +112,7 @@
     .logo {
       font-size: 1.8rem;
       font-weight: 800;
-      background: linear-gradient(130deg, #3b82f6, #38bdf8);
+      background: linear-gradient(130deg, #e4ecf8, #21b4f3);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -121,7 +121,7 @@
 
     .logo i {
       background: none;
-      color: #3b44f6;
+      color: #d7d8e7;
       margin-right: 6px;
     }
 
@@ -288,6 +288,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
+       margin: 0 2rem;
     }
     .project-card {
       background: rgba(20, 24, 40, 0.7);
@@ -311,6 +312,17 @@
       justify-content: center;
       font-size: 4rem;
       color: #c084fc;
+      position: relative;
+    }
+    /* Keep the lil flag styling inside projects */
+    .project-img::after {
+      content: "🇸🇨";
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      font-size: 1.8rem;
+      opacity: 0.7;
+      pointer-events: none;
     }
     .project-content {
       padding: 1.5rem;
@@ -357,6 +369,9 @@
       backdrop-filter: blur(12px);
       border-radius: 2rem;
       padding: 2rem;
+      /** Need it to stop touching the two sides for all screen sizes **/
+      margin: 0 2rem;
+
       border: 1px solid #2d3a5e;
       box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
     }
@@ -476,7 +491,7 @@
     <!-- Navigation -->
     <div class="navbar">
       <div class="logo">
-        <i class="fas fa-code-branch"></i> CodeBridge Consultancy
+        <i class=""></i> CodeBridge Consultancy
       </div>
       <div class="nav-links">
         <a href="#services">Services</a>
@@ -490,15 +505,15 @@
       <div class="hero">
         <div class="hero-text">
           <div class="badge"><i class="fas fa-map-marker-alt"></i> Based in Seychelles · Global Reach</div>
-          <h1>Build your digital future with confidence</h1>
+          <h1>Build your digital presence with confidence</h1>
           <div class="typed-container">
             <span id="typed-words"></span>
           </div>
-          <p>We craft high-performance websites, mobile apps, and digital ecosystems. From startups to enterprises. Modern, scalable, and future-proof — tailored to your vision.</p>
+          <p>We craft high-performance websites, mobile apps, and digital ecosystems. From startups to enterprises. Modern, scalable, and future-proof.</p>
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-paper-plane"></i> Get a Quote</button>
         </div>
         <div style="flex:1; text-align:center;">
-          <i class="fas fa-laptop-code" style="font-size: 12rem; color: #2a1e44; opacity: 0.7;"></i>
+          <i class="fas fa-laptop-code" style="font-size: 12rem; color: #78767d; opacity: 0.7;"></i>
         </div>
       </div>
     </section>
@@ -510,69 +525,71 @@
         <div class="service-card">
           <i class="fas fa-globe" style="font-size: 2.5rem; color:#a855f7;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Website Development</h3>
-          <p>Fully responsive, SEO-optimized websites, custom CMS, blazing performance, and modern UI/UX. Perfect for businesses, e-commerce, and portfolios.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Request quote →</button>
-        </div>
+          <p>Fully responsive, SEO-optimized websites, blazing performance, and modern UI/UX. Perfect for businesses, e-commerce, and portfolios.</p>
+            </div>
         <div class="service-card">
           <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color:#c084fc;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Mobile App Development</h3>
-          <p>iOS & Android, React Native, native experiences — fintech, lifestyle, logistics, real-time sync. Cross-platform efficiency without compromise.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Get quote →</button>
-        </div>
+          <p>iOS & Android, React Native. For fintech, lifestyle, logistics, real-time sync. Cross-platform efficiency without compromise.</p>
+             </div>
         <div class="service-card">
           <i class="fas fa-chart-line" style="font-size: 2.5rem; color:#e879f9;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">SEO & Growth</h3>
           <p>Data-driven visibility, local SEO for Seychelles market + international ranking. Content strategy, technical audits, and performance tracking.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calculator"></i> Request quote →</button>
+            </div>
         </div>
       </div>
     </section>
 
    
-    <!-- ========== PROJECTS SECTION (Purple subtle, three projects) ========== -->
+    <!-- ========== PROJECTS SECTION (EDITED WITH NEW PROJECTS, RETAINING FLAG AND SEYCHELLES TOUCH INSIDE PROJECTS ONLY) ========== -->
     <section id="projects" class="projects-section">
       <div class="section-title">
         <span>Featured Projects ✦</span><br>
         <span style="font-size: 1rem; color:#9aa6c9;">Innovation delivered across the islands</span>
       </div>
       <div class="projects-grid">
-        <!-- Project 1 -->
+        <!-- Project 1: Salon & Beauty — Coco Chic Salon (Seychelles) -->
         <div class="project-card">
           <div class="project-img">
-            <i class="fas fa-umbrella-beach"></i>
+            <i class="fas fa-cut"></i> <i class="fas fa-spa" style="margin-left: 10px;"></i>
           </div>
           <div class="project-content">
-            <div class="project-tag">tourism + hospitality</div>
-            <h3>Seychelles Escape</h3>
-            <p>All-in-one digital ecosystem for luxury resorts: real-time booking engine, virtual island tours, and multilingual CRM integration — increased direct bookings by 156%.</p>
-            <a href="#" class="project-link">Case study <i class="fas fa-arrow-right"></i></a>
+            <div class="project-tag">✨ Beauty & Lifestyle | Victoria, Mahé</div>
+            <h3>Crown and Gold</h3>
+            <p>Elegant salong landing page. Seamless to showcase their services and products. A way to reach more customers.</p>
+            <a href="salon.html" class="project-link">See case study <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Project 2 -->
+
+        <!-- Project 2: Fintech — Coconut Pay (Seychelles fintech) -->
         <div class="project-card">
           <div class="project-img">
-            <i class="fas fa-fish"></i>
+            <i class="fas fa-coins"></i> <i class="fas fa-mobile-alt"></i>
           </div>
           <div class="project-content">
-            <div class="project-tag">logistics & marine</div>
-            <h3>BlueCargo IQ</h3>
-            <p>Cross-platform mobile app for fleet management & cargo tracking across Indian Ocean routes. Real-time analytics, offline-first, and IoT sensor integration.</p>
-            <a href="#" class="project-link">Discover app <i class="fas fa-arrow-right"></i></a>
+            <div class="project-tag">💳 Fintech | Coconut Pay</div>
+            <h3>Coconut Pay</h3>
+            <p>Secure digital wallet & payment gateway tailored for Seychelles merchants. A demo of their innovative fintech solution.</p>
+            <a href="coconutpay.html" class="project-link">Discover app <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Project 3 -->
-        <div class="project-card">
-          <div class="project-img">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="project-content">
-            <div class="project-tag">fintech / blockchain</div>
-            <h3>CoconutPay</h3>
-            <p>Secure digital wallet & payment gateway tailored for Seychelles merchants. Seamless crypto/fiat conversion, AI fraud detection, and regulatory compliant.</p>
-            <a href="#" class="project-link">View platform <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
+
+       <!-- Project 3: Artist Portfolio -->
+<div class="project-card">
+  <div class="project-img">
+    <i class="fas fa-palette"></i>
+    <i class="fas fa-paint-brush"></i>
+  </div>
+  <div class="project-content">
+    <div class="project-tag">Personal Portfolio</div>
+    <h3>Artist Portfolio</h3>
+    <p>A demo for a digital art portfolio website. If you're an artist, this is the perfect platform to showcase your work.</p>
+    <a href="noneprofit.html" class="project-link">
+      Explore platform <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
       <div style="text-align: center; margin-top: 2rem;">
         <i class="fas fa-palette" style="color:#a855f7; opacity: 0.7;"></i> <span style="color:#b9c3db;">Each project built with scalability & island-first mindset</span>
       </div>

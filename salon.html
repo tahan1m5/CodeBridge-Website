@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Crown & Gold | Bespoke Atelier for Textured Hair</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --dark-gold: #B8860B;
+            --black: #0a0a0a;
+            --dark-grey: #121212;
+            --charcoal: #1e1e1e;
+            --white: #ffffff;
+            --off-white: #faf9f6;
+            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--off-white);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* ----- IMPROVED CURSOR ----- */
+        .custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s linear;
+        }
+
+        .custom-cursor-follower {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+        }
+
+        /* Hide cursor on interactive elements */
+        a, button, .btn, .service-card, .price-card, .gallery-item {
+            cursor: none;
+        }
+
+        /* Demo Disclaimer */
+        .demo-badge {
+            background: var(--gold);
+            color: var(--black);
+            text-align: center;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 0;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: monospace;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(10, 10, 10, 0.92);
+            position: fixed;
+            width: 100%;
+            top: 24px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            backdrop-filter: blur(12px);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 4px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), 
+                        url('https://images.pexels.com/photos/3993448/pexels-photo-3993448.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 8%;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .scroll-indicator {
+            width: 28px;
+            height: 48px;
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 12px;
+            background: var(--gold);
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8px;
+            border-radius: 2px;
+            animation: scrollAnim 2s infinite;
+        }
+
+        @keyframes scrollAnim {
+            0% { opacity: 1; top: 8px; }
+            70% { opacity: 0; top: 28px; }
+            100% { opacity: 0; top: 8px; }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 8vw, 5.8rem);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.9s forwards 0.4s;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            opacity: 0;
+            animation: fadeInUp 0.9s forwards 0.7s;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 42px;
+            border: 1.5px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left 0.35s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        /* Sections common */
+        .services, .pricing, .gallery, .testimonials, .newsletter {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+        }
+
+        .gold-divider {
+            width: 90px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background: var(--charcoal);
+            padding: 42px 28px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card i {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 22px;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--dark-grey);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .price-card {
+            background: var(--charcoal);
+            padding: 38px 20px;
+            text-align: center;
+            border-radius: 12px;
+            transition: 0.25s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .price-card:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+        }
+        .price-card .price {
+            font-size: 2.3rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 18px 0;
+        }
+
+        /* Gallery - FIXED GAPS & IMAGES */
+        .gallery {
+            background: var(--black);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            height: 340px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            padding: 20px;
+            transition: bottom 0.35s;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .gallery-item:hover .gallery-overlay {
+            bottom: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--charcoal);
+        }
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 28px;
+            padding: 20px 0 30px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .testimonial-card {
+            min-width: 320px;
+            background: rgba(255,255,255,0.04);
+            padding: 35px;
+            border-radius: 24px;
+            scroll-snap-align: start;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        .testimonial-card i {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .stars {
+            color: var(--gold);
+            margin: 12px 0;
+            letter-spacing: 2px;
+        }
+
+        /* Brand Bar */
+        .brand-bar {
+            background: var(--gold);
+            padding: 35px 8%;
+            text-align: center;
+            color: var(--black);
+        }
+        .brand-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin-top: 20px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Inclusive section */
+        .inclusive {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background: var(--dark-grey);
+        }
+        .inclusive-img {
+            flex: 1;
+            min-width: 280px;
+            height: 550px;
+            background: url('https://images.pexels.com/photos/3998421/pexels-photo-3998421.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+        }
+        .inclusive-text {
+            flex: 1;
+            padding: 60px 70px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(115deg, #0a0a0a 0%, #1a1308 100%);
+            text-align: center;
+        }
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 40px;
+        }
+        .newsletter-form input {
+            padding: 14px 28px;
+            width: 300px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: white;
+            border-radius: 60px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .newsletter-form input:focus {
+            border-color: var(--gold);
+        }
+        .newsletter-form button {
+            padding: 14px 36px;
+            background: var(--gold);
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .newsletter-form button:hover {
+            background: var(--dark-gold);
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            padding: 70px 8% 40px;
+            background: #050505;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 45px;
+            margin-bottom: 55px;
+            text-align: left;
+        }
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .footer-col a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        .social-links {
+            margin: 30px 0 20px;
+        }
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.25s;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            color: black;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.25s;
+            z-index: 99;
+            border: none;
+            font-size: 1.2rem;
+        }
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.7s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            .inclusive-text { padding: 40px 30px; }
+            .gallery-item { height: 280px; }
+            .testimonial-card { min-width: 270px; }
+        }
+        @media (max-width: 550px) {
+            .services, .pricing, .gallery, .testimonials { padding: 70px 5%; }
+            .section-title h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-badge">✨ CROWN & GOLD | LUXURY ATELIER — CONCEPT DEMO ✨</div>
+
+<div class="custom-cursor"></div>
+<div class="custom-cursor-follower"></div>
+
+<nav id="navbar">
+    <a href="#" class="logo">CROWN & GOLD</a>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Investment</a></li>
+        <li><a href="#gallery">Artistry</a></li>
+        <li><a href="#about">Philosophy</a></li>
+        <li><a href="#contact">Book</a></li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p>Artistry for every texture</p>
+        <h1>Your Crown, Our Craft</h1>
+        <a href="#services" class="btn">Discover Opulence</a>
+    </div>
+    <div class="hero-overlay">
+        <div class="scroll-indicator"></div>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <div class="section-title reveal">
+        <h2>Bespoke Services</h2>
+        <div class="gold-divider"></div>
+        <p style="margin-top: 16px;">Tailored exclusively for your hair's narrative</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card reveal"><i class="fa-solid fa-scissors"></i><h3>Precision Cuts</h3><p>Architectural fades, soft layers & avant-garde silhouettes.</p></div>
+        <div class="service-card reveal"><i class="fa-solid fa-crown"></i><h3>Protective Styling</h3><p>Knotless braids, micro locs, twists – healthy & elegant.</p></div>
+        <div class="service-card reveal"><i class="fa-solid fa-droplet"></i><h3>Textured Color</h3><p>Balayage, vivid hues formulated for coils and curls.</p></div>
+        <div class="service-card reveal"><i class="fa-solid fa-spa"></i><h3>Silk Press & Steam</h3><p>Glass-like finish + signature hydration ritual.</p></div>
+        <div class="service-card reveal"><i class="fa-solid fa-hand-sparkles"></i><h3>Scalp Renewal</h3><p>Gold-infused detox & micro-massage therapy.</p></div>
+        <div class="service-card reveal"><i class="fa-solid fa-ring"></i><h3>Bridal Atelier</h3><p>Custom wedding packages + trials for your radiant day.</p></div>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <div class="section-title reveal">
+        <h2>Investment in Excellence</h2>
+        <div class="gold-divider"></div>
+    </div>
+    <div class="pricing-grid">
+        <div class="price-card reveal"><h4>Signature Cut</h4><div class="price">$85+</div><p>Consultation + precision cut + styling</p></div>
+        <div class="price-card reveal"><h4>Silk Press Experience</h4><div class="price">$120+</div><p>Detox wash, deep condition, blowout + flatiron</p></div>
+        <div class="price-card reveal"><h4>Knotless Braids</h4><div class="price">$250+</div><p>Custom length & thickness, premium hair included</p></div>
+        <div class="price-card reveal"><h4>Color & Tone</h4><div class="price">$180+</div><p>Bond-building color + Olaplex treatment</p></div>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <div class="section-title reveal">
+        <h2>Our Masterpieces</h2>
+        <div class="gold-divider"></div>
+    </div>
+    <div class="gallery-grid">
+        <!-- All images replaced with reliable, fast-loading Unsplash/Pexels high-res -->
+        <div class="gallery-item"><img src="https://images.pexels.com/photos/3998426/pexels-photo-3998426.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Elegant braids" loading="lazy"><div class="gallery-overlay">✨ Intricate Feed-ins</div></div>
+        <div class="gallery-item"><img src="https://images.pexels.com/photos/3997774/pexels-photo-3997774.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hydrated curls" loading="lazy"><div class="gallery-overlay">💫 Hydrated Coils</div></div>
+        <div class="gallery-item"><img src="https://images.pexels.com/photos/3997891/pexels-photo-3997891.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Silk press shine" loading="lazy"><div class="gallery-overlay">🔥 Mirror Shine Silk Press</div></div>
+        <div class="gallery-item"><img src="https://images.pexels.com/photos/3998424/pexels-photo-3998424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Golden balayage" loading="lazy"><div class="gallery-overlay">🎨 Golden Hour Balayage</div></div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="section-title reveal">
+        <h2>Whispers of our Guests</h2>
+        <div class="gold-divider"></div>
+    </div>
+    <div class="testimonial-slider">
+        <div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"The most luxurious experience for my 4C hair. I felt seen, celebrated, and transformed."</p><div class="stars">★★★★★</div><h4>- Maya Rodriguez</h4></div>
+        <div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"Their color correction saved my curls! Expert technique and genuine care."</p><div class="stars">★★★★★</div><h4>- Jasmine Chen</h4></div>
+        <div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"Finally a salon that respects textured hair as high art. Worth every penny."</p><div class="stars">★★★★★</div><h4>- Olivia Kapoor</h4></div>
+        <div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"The silk press lasted 3 weeks. Pure magic and healthy results."</p><div class="stars">★★★★★</div><h4>- Sophia Laurent</h4></div>
+    </div>
+</section>
+
+<section class="brand-bar">
+    <h3>As Featured In & Trusted By</h3>
+    <div class="brand-logos"><span>VOGUE Beauty</span><span>Texture Talk</span><span>Allure Insider</span><span>Luxe Hair Awards</span></div>
+</section>
+
+<section class="inclusive" id="about">
+    <div class="inclusive-img"></div>
+    <div class="inclusive-text reveal">
+        <h2>Inclusive Luxury, Elevated</h2>
+        <p style="margin-bottom: 20px;">We are architects of confidence. Masters of Black hair artistry and textured narratives, yet our chairs welcome every crown — because excellence has no boundaries.</p>
+        <p>Premium products, white-glove rituals, and a sanctuary where your identity is the centerpiece.</p>
+        <br>
+        <a href="#" class="btn">Meet The Artisans</a>
+    </div>
+</section>
+
+<section class="newsletter">
+    <h2>Join The Inner Circle</h2>
+    <p style="margin-top: 8px;">Early access to booking slots, seasonal drops & VIP invites.</p>
+    <div class="newsletter-form">
+        <input type="email" placeholder="Your email address">
+        <button>Subscribe →</button>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="footer-grid">
+        <div class="footer-col"><h4>CROWN & GOLD</h4><p>Luxury Atelier for Textured Hair</p><p>📍 88 Madison Ave, NYC</p><p>📞 +1 (212) 555-0888</p></div>
+        <div class="footer-col"><h4>Explore</h4><a href="#">Services</a><a href="#">Gift Cards</a><a href="#">Sustainability</a><a href="#">Careers</a></div>
+        <div class="footer-col"><h4>Policies</h4><a href="#">Booking Terms</a><a href="#">Privacy</a><a href="#">Accessibility</a></div>
+    </div>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p style="font-size: 0.7rem; color: #666; letter-spacing: 2px; text-align: center;">© 2025 Crown & Gold Studio — Concept Portfolio Demo. All rights reserved.</p>
+</footer>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+    // ----- ACCURATE CURSOR FOLLOWING -----
+    const cursorDot = document.querySelector('.custom-cursor');
+    const cursorOutline = document.querySelector('.custom-cursor-follower');
+    
+    if (cursorDot && cursorOutline) {
+        window.addEventListener('mousemove', (e) => {
+            // Direct pixel-perfect positioning
+            cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            // Follower with slight smoothness but accurate base
+            cursorOutline.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+        
+        // Hide default cursor on whole page
+        document.body.style.cursor = 'none';
+        
+        // Optional: reset cursor on interactive elements to avoid double cursor
+        const interactive = document.querySelectorAll('a, button, .btn, .service-card, .price-card, .gallery-item');
+        interactive.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '44px';
+                cursorOutline.style.height = '44px';
+                cursorOutline.style.border = '2px solid var(--gold-light)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '32px';
+                cursorOutline.style.height = '32px';
+                cursorOutline.style.border = '1.5px solid var(--gold)';
+            });
+        });
+    }
+    
+    // Reveal animations on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    function handleReveal() {
+        const windowHeight = window.innerHeight;
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const revealPoint = 130;
+            if (rect.top < windowHeight - revealPoint) {
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', handleReveal);
+    handleReveal();
+    
+    // Navbar background change on scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+            nav.style.background = 'rgba(5, 5, 5, 0.96)';
+            nav.style.padding = '12px 8%';
+        } else {
+            nav.style.background = 'rgba(10, 10, 10, 0.92)';
+            nav.style.padding = '18px 8%';
+        }
+        const backBtn = document.getElementById('backToTop');
+        if (window.scrollY > 500) backBtn.classList.add('show');
+        else backBtn.classList.remove('show');
+    });
+    
+    // Back to top
+    document.getElementById('backToTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Auto-scroll testimonials softly
+    const slider = document.querySelector('.testimonial-slider');
+    if (slider) {
+        let scrollPos = 0;
+        const step = 340;
+        setInterval(() => {
+            if (scrollPos < slider.scrollWidth - slider.clientWidth) {
+                scrollPos += step;
+                slider.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            } else {
+                scrollPos = 0;
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        }, 4800);
+    }
+</script>
+</body>
+</html>

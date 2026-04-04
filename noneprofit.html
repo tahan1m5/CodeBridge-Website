@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Noir | Art & Craft Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .line-draw { width: 0; height: 1px; background: black; transition: width 0.8s ease; }
+        .nav-link:hover .line-draw { width: 100%; }
+        .custom-cursor {
+            width: 20px; height: 20px;
+            border: 1px solid black;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 mix-blend-difference px-8 py-6 flex justify-between items-center text-black">
+        <div class="text-2xl font-bold tracking-tighter uppercase">Studio Noir</div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+            <a href="#work" class="nav-link">Work<div class="line-draw"></div></a>
+            <a href="#about" class="nav-link">The Artist<div class="line-draw"></div></a>
+            <a href="#services" class="nav-link">Services<div class="line-draw"></div></a>
+            <a href="#contact" class="nav-link">Contact<div class="line-draw"></div></a>
+        </div>
+        <button class="md:hidden">Menu</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-6xl md:text-9xl mb-4 reveal hero-title">Creation <span class="italic">in</span> Form</h1>
+        <p class="text-lg md:text-xl max-w-2xl reveal hero-subtitle font-light tracking-wide">
+            Handcrafted ceramics, charcoal sketches, and curated crafts. 
+            Elevating the everyday through monochromatic elegance.
+        </p>
+        <div class="mt-12 reveal">
+            <div class="w-px h-24 bg-black mx-auto animate-bounce"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="work" class="py-24 px-8 bg-black text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-5xl md:text-7xl">Selected <br/>Works</h2>
+                <p class="text-gray-400 max-w-xs text-sm uppercase tracking-widest pb-2 underline decoration-1">View All Collections</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Item 1 -->
+                <div class="reveal group cursor-pointer">
+                    <div class="aspect-[4/5] bg-zinc-900 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&q=80&w=1000" alt="Pottery" class="w-full h-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-2xl mt-6">Minimalist Earthware</h3>
+                    <p class="text-gray-400 italic">Ceramics, 2023</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="reveal mt-0 md:mt-24 group cursor-pointer">
+                    <div class="aspect-[4/5] bg-zinc-900 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1000" alt="Sketch" class="w-full h-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-2xl mt-6">Charcoal Study No. 12</h3>
+                    <p class="text-gray-400 italic">Fine Art, 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services Section -->
+    <section id="services" class="py-24 px-8 bg-white text-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 border-t border-black pt-12">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest">01</span>
+                    <h3 class="text-3xl mt-4 mb-6">Custom Commissions</h3>
+                    <p class="text-gray-600 leading-relaxed">Tailored pieces designed specifically for your space. From large scale canvases to bespoke tableware collections.</p>
+                </div>
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest">02</span>
+                    <h3 class="text-3xl mt-4 mb-6">Artisan Workshops</h3>
+                    <p class="text-gray-600 leading-relaxed">Monthly sessions in the local studio. Learn the fundamentals of clay molding and charcoal techniques.</p>
+                </div>
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest">03</span>
+                    <h3 class="text-3xl mt-4 mb-6">Online Shop</h3>
+                    <p class="text-gray-600 leading-relaxed">A rotating collection of available works, shipped worldwide. Exclusive drops every full moon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-8 bg-zinc-50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="reveal order-2 md:order-1">
+                <h2 class="text-5xl mb-8">The Artist</h2>
+                <p class="text-xl leading-relaxed mb-6">
+                    Based in the heart of the coast, <span class="font-bold">Elena Thorne</span> bridges the gap between raw nature and modern minimalism.
+                </p>
+                <p class="text-gray-600 mb-8">
+                    With over 15 years of experience in traditional crafts, Elena’s work is characterized by its monochrome palette, allowing texture and shadow to take center stage. Her pieces are held in private collections across Europe and North America.
+                </p>
+                <a href="#" class="inline-block border-b-2 border-black pb-1 uppercase tracking-widest font-bold text-sm">Read Full Story</a>
+            </div>
+            <div class="reveal order-1 md:order-2">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/00/49/13/1000_F_500491375_i7OfAXaJj0m13ak3AAqiWCOTdAxvAnjv.jpg" alt="Artist at work" class="grayscale w-full h-[600px] object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="py-24 px-8 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-6xl md:text-8xl mb-12 reveal italic">Let's Create.</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-24 mb-20 reveal">
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Inquiries</p>
+                    <p class="text-2xl">hello@studionoir.com</p>
+                </div>
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Social</p>
+                    <p class="text-2xl">@studionoir_art</p>
+                </div>
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Location</p>
+                    <p class="text-2xl">Portland, OR</p>
+                </div>
+            </div>
+            <p class="text-xs text-gray-400 tracking-widest uppercase">© 2024 Studio Noir. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Movement
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Hero Entrance
+        const tl = gsap.timeline();
+        tl.to(".hero-title", { opacity: 1, y: 0, duration: 1.2, ease: "power4.out", delay: 0.5 })
+          .to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.8");
+
+        // Scroll Reveals
+        gsap.utils.toArray(".reveal").forEach((elem) => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Horizontal line drawing effect for work section
+        gsap.from("#work h2", {
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 70%",
+            },
+            x: -50,
+            opacity: 0,
+            duration: 1.5
+        });
+    </script>
+</body>
+</html>
