@@ -325,7 +325,7 @@
     }
     /* Keep the small Seychelles flag overlay as requested (island-first touch) */
     .project-img::after {
-      content: "🇸🇨";
+      content: "";
       position: absolute;
       bottom: 12px;
       right: 16px;
@@ -546,20 +546,17 @@
           <i class="fas fa-globe" style="font-size: 2.5rem; color:#a855f7;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Website Development</h3>
           <p>Fully responsive, SEO-optimized websites, blazing performance, and modern UI/UX. Perfect for businesses, e-commerce, and portfolios.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request quote →</button>
-        </div>
+            </div>
         <div class="service-card">
           <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color:#c084fc;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">Mobile App Development</h3>
           <p>iOS & Android, React Native. For fintech, lifestyle, logistics, real-time sync. Cross-platform efficiency without compromise.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request quote →</button>
-        </div>
+           </div>
         <div class="service-card">
           <i class="fas fa-chart-line" style="font-size: 2.5rem; color:#e879f9;"></i>
           <h3 style="margin: 1rem 0 0.5rem;">SEO & Growth</h3>
           <p>Data-driven visibility, local SEO for Seychelles market + international ranking. Content strategy, technical audits, and performance tracking.</p>
-          <button class="btn-sm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request quote →</button>
-        </div>
+         </div>
       </div>
     </section>
 
@@ -614,49 +611,87 @@
         <span style="color:#b9c3db;">Each project built with scalability & island-first mindset</span>
       </div>
     </section>
+<!-- Contact Form + quote request -->
+<section id="contact">
+  <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">
+    Let's <span style="color:#a855f7;">bridge</span> your vision
+  </h2>
 
-    <!-- Contact Form + quote request -->
-    <section id="contact">
-      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Let's <span style="color:#a855f7;">bridge</span> your vision</h2>
-      <div class="contact-form-card">
-        <form id="consultForm" action="#" method="post">
-          <div class="row-2cols">
-            <div class="form-group">
-              <label>Full name *</label>
-              <input type="text" id="name" required placeholder="Alexandre Benoit">
-            </div>
-            <div class="form-group">
-              <label>Email address *</label>
-              <input type="email" id="email" required placeholder="hello@codebridge.sc">
-            </div>
-          </div>
-          <div class="row-2cols">
-            <div class="form-group">
-              <label>Phone (optional)</label>
-              <input type="tel" id="phone" placeholder="+248 2xxx xxx">
-            </div>
-            <div class="form-group">
-              <label>I'm interested in</label>
-              <select id="mainService">
-                <option value="website">Website Development</option>
-                <option value="mobile-app">Mobile App Development</option>
-                <option value="both">Full Website + App Bundle</option>
-                <option value="seo">SEO & Growth Package</option>
-                <option value="maintenance">Maintenance & Support</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Project details / message</label>
-            <textarea rows="3" id="message" placeholder="Tell us about your idea, timeline, budget range or any specific request..."></textarea>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <button type="submit" class="btn-primary" style="width: auto;"><i class="fas fa-paper-plane"></i> Send inquiry → get quote</button>
-            <small style="color:#6c86a3;">We’ll respond within 24h — no obligation</small>
-          </div>
-          <div id="formFeedback" style="margin-top: 1.2rem; font-size: 0.9rem;"></div>
-        </form>
+  <div class="contact-form-card">
+    <form id="consultForm" action="https://formspree.io/f/xgopppvq" method="POST">
+      
+      <!-- Optional email subject -->
+      <input type="hidden" name="_subject" value="New CodeBridge Inquiry">
+
+      <div class="row-2cols">
+        <div class="form-group">
+          <label>Full name *</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name"
+            required 
+            placeholder="Alexandre Benoit"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Email address *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            required 
+            placeholder="hello@codebridge.sc"
+          >
+        </div>
       </div>
+
+      <div class="row-2cols">
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            placeholder="+248 2xxx xxx"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>I'm interested in</label>
+          <select id="mainService" name="service">
+            <option value="website">Website Development</option>
+            <option value="mobile-app">Mobile App Development</option>
+            <option value="both">Full Website + App Bundle</option>
+            <option value="seo">SEO & Growth Package</option>
+            <option value="maintenance">Maintenance & Support</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Project details / message</label>
+        <textarea 
+          rows="3" 
+          id="message" 
+          name="message"
+          placeholder="Tell us about your idea, timeline, budget range or any specific request..."
+        ></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <button type="submit" class="btn-primary" style="width: auto;">
+          <i class="fas fa-paper-plane"></i> Send inquiry → get quote
+        </button>
+        <small style="color:#6c86a3;"> We'll respond within 24h — no obligation
+        </small>
+      </div>
+
+      <div id="formFeedback" style="margin-top: 1.2rem; font-size: 0.9rem;"></div>
+    </form>
+  </div>
+</section>
 
       <!-- social media links -->
       <div class="social-links">
@@ -665,7 +700,7 @@
         <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="mailto:info@codebridgeconsultancy.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
-    </section>
+  
 
     <footer>
       <p>© 2025 CodeBridge Consultancy — based in Seychelles. Bridging digital visions.</p>
@@ -706,33 +741,49 @@
     smartBackspace: true,
   });
 
-  // handle contact form submission (frontend simulation)
-  const form = document.getElementById('consultForm');
-  const feedbackDiv = document.getElementById('formFeedback');
+const form = document.getElementById('consultForm');
+const feedbackDiv = document.getElementById('formFeedback');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (!name || !email) {
-      feedbackDiv.innerHTML = '<span style="color:#f97316;"><i class="fas fa-exclamation-triangle"></i> Please provide name and email.</span>';
-      return;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      feedbackDiv.innerHTML =
+        '<span style="color:#c084fc;"><i class="fas fa-check-circle"></i> Inquiry sent successfully. We will contact you within 24h.</span>';
+
+      form.reset();
+
+      setTimeout(() => {
+        feedbackDiv.innerHTML = '';
+      }, 6000);
+    } else {
+      feedbackDiv.innerHTML =
+        '<span style="color:#f97316;"><i class="fas fa-times-circle"></i> Failed to send inquiry. Please try again.</span>';
     }
-    if (!email.includes('@') || !email.includes('.')) {
-      feedbackDiv.innerHTML = '<span style="color:#f97316;"><i class="fas fa-envelope"></i> Enter a valid email address.</span>';
-      return;
-    }
-
-    const mainServiceSelect = document.getElementById('mainService');
-    const serviceLabel = mainServiceSelect.options[mainServiceSelect.selectedIndex]?.text || 'our services';
-    
-    feedbackDiv.innerHTML = `<span style="color:#c084fc;"><i class="fas fa-check-circle"></i> Thank you ${name}! Our Seychelles team will reach out within 24h regarding ${serviceLabel} — we'll share a detailed quote.</span>`;
-    form.reset();
-    setTimeout(() => {
-      feedbackDiv.innerHTML = '';
-    }, 6000);
-  });
+  } catch (error) {
+    feedbackDiv.innerHTML =
+      '<span style="color:#f97316;"><i class="fas fa-times-circle"></i> Network error. Please try again.</span>';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML =
+      '<i class="fas fa-paper-plane"></i> Send inquiry → get quote';
+  }
+});
 
   // Smooth anchor links
   document.querySelectorAll('.nav-links a').forEach(anchor => {
